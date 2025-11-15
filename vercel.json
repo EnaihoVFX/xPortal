@@ -2,6 +2,7 @@
   "buildCommand": "npm ci && npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm ci",
-  "rootDirectory": "frontend"
+  "rootDirectory": "frontend",
+  "framework": null
 }
 
