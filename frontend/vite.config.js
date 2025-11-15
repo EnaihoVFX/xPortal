@@ -6,6 +6,18 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Suppress ethers v6 warnings about providers
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE' || 
+            warning.message?.includes('providers')) {
+          return
+        }
+        warn(warning)
+      }
+    }
   }
 })
 
