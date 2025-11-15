@@ -4,8 +4,8 @@ import { BaseAgent } from './baseAgent.js'
  * News-focused agent that specializes in analyzing news articles and media
  */
 export class NewsAgent extends BaseAgent {
-  constructor(name, geminiApiKey) {
-    super(name, 'News & Media Analyst', geminiApiKey)
+  constructor(name, openRouterApiKey, models = []) {
+    super(name, 'News & Media Analyst', openRouterApiKey, models)
   }
 
   buildAnalysisPrompt(informationSources, marketContext) {

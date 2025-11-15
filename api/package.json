@@ -1,0 +1,9 @@
+{
+  "name": "prediction-market-api",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@vercel/postgres": "^0.5.1"
+  }
+}
+

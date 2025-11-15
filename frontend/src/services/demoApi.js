@@ -4,10 +4,25 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api/demo'
 
 // Get user ID from email (for demo accounts)
+// Uses a more robust method to ensure uniqueness and avoid collisions
 const getUserId = (email) => {
-  if (!email) return null
-  // Use email as user ID for demo accounts
-  return email.replace(/[^a-zA-Z0-9]/g, '_')
+  if (!email) return 'anonymous'
+  // Normalize email: lowercase, then create a safe identifier
+  const normalized = email.toLowerCase().trim()
+  // Replace all non-alphanumeric with underscore, but preserve structure
+  // This ensures user@example.com and user@example_com are different
+  const userId = normalized.replace(/[^a-zA-Z0-9@._-]/g, '_')
+  // Add a hash-like suffix to prevent collisions from similar emails
+  // Simple hash of the original email for uniqueness
+  let hash = 0
+  for (let i = 0; i < normalized.length; i++) {
+    const char = normalized.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // Convert to 32bit integer
+  }
+  // Use first 6 chars of hash (as hex) to ensure uniqueness
+  const hashSuffix = Math.abs(hash).toString(16).substring(0, 6)
+  return `${userId}_${hashSuffix}`
 }
 
 export const demoApi = {

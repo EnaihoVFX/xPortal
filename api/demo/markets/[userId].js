@@ -1,6 +1,12 @@
 // Vercel serverless function for demo markets
 // GET: Retrieve user's markets
 // POST: Update markets
+// Now uses Vercel Postgres database when available, falls back to in-memory
+
+import {
+  getMarkets,
+  insertMarket
+} from '../../db/index.js'
 
 // Demo markets data (inline for serverless function)
 const DEMO_MARKETS = [
@@ -146,8 +152,51 @@ const DEMO_MARKETS = [
   }
 ]
 
-// In-memory store (upgrade to database in production)
+// In-memory store (fallback if database not available)
 const markets = new Map()
+
+// Helper to check if database is available
+const useDatabase = () => {
+  try {
+    // Check if POSTGRES_URL is set (Vercel automatically provides this)
+    return !!process.env.POSTGRES_URL
+  } catch {
+    return false
+  }
+}
+
+// Convert demo market format to database format
+const marketToDbFormat = (market, userId) => ({
+  marketId: market.id,
+  creator: market.creator || `demo_${userId}`,
+  question: market.question,
+  description: market.description || market.question,
+  outcomes: Array.isArray(market.outcomes) ? market.outcomes : ['Yes', 'No'],
+  endTime: market.endTime || Math.floor(Date.now() / 1000) + 365 * 24 * 60 * 60,
+  resolutionTime: null,
+  status: market.status || 0,
+  category: market.category || 7,
+  totalLiquidity: market.totalLiquidity || '0',
+  totalVolume: market.totalVolume || '0',
+  totalFees: '0',
+  creationTime: Math.floor(Date.now() / 1000)
+})
+
+// Convert database format to demo market format
+const dbToMarketFormat = (dbMarket, userShares = {}) => ({
+  id: dbMarket.market_id,
+  question: dbMarket.question,
+  description: dbMarket.description,
+  outcomes: dbMarket.outcomes || ['Yes', 'No'],
+  endTime: Number(dbMarket.end_time),
+  status: Number(dbMarket.status),
+  category: Number(dbMarket.category),
+  totalLiquidity: dbMarket.total_liquidity || '0',
+  totalVolume: dbMarket.total_volume || '0',
+  creator: dbMarket.creator,
+  probabilities: dbMarket.probabilities || dbMarket.outcomes.map(() => 50),
+  userShares: userShares
+})
 
 export default async function handler(req, res) {
   const { userId } = req.query
@@ -168,7 +217,27 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      // Get markets
+      // Try to use database first
+      if (useDatabase()) {
+        try {
+          // Get markets for this demo user (creator = demo_userId)
+          const dbMarkets = await getMarkets({ creator: `demo_${userId}` })
+          
+          if (dbMarkets && dbMarkets.length > 0) {
+            // Convert to demo format
+            const userMarkets = dbMarkets.map(m => {
+              const outcomes = m.outcomes || ['Yes', 'No']
+              const userShares = outcomes.reduce((acc, _, i) => ({ ...acc, [i]: "0" }), {})
+              return dbToMarketFormat(m, userShares)
+            })
+            return res.status(200).json({ markets: userMarkets })
+          }
+        } catch (dbError) {
+          console.warn('Database query failed, falling back to in-memory:', dbError.message)
+        }
+      }
+      
+      // Fallback to in-memory storage
       let userMarkets = markets.get(userId)
       
       if (!userMarkets) {
@@ -181,17 +250,38 @@ export default async function handler(req, res) {
       }
       
       return res.status(200).json({ markets: userMarkets })
+      
     } else if (req.method === 'POST') {
       // Update markets
       const { markets: updatedMarkets } = req.body
-      if (updatedMarkets) {
-        markets.set(userId, updatedMarkets)
-        return res.status(200).json({ 
-          success: true,
-          markets: updatedMarkets
-        })
+      if (!updatedMarkets) {
+        return res.status(400).json({ error: 'Markets required' })
       }
-      return res.status(400).json({ error: 'Markets required' })
+
+      // Try to save to database first
+      if (useDatabase()) {
+        try {
+          // Save each market to database
+          for (const market of updatedMarkets) {
+            await insertMarket(marketToDbFormat(market, userId))
+          }
+          return res.status(200).json({ 
+            success: true,
+            markets: updatedMarkets,
+            saved: 'database'
+          })
+        } catch (dbError) {
+          console.warn('Database save failed, falling back to in-memory:', dbError.message)
+        }
+      }
+      
+      // Fallback to in-memory storage
+      markets.set(userId, updatedMarkets)
+      return res.status(200).json({ 
+        success: true,
+        markets: updatedMarkets,
+        saved: 'memory'
+      })
     } else {
       return res.status(405).json({ error: 'Method not allowed' })
     }

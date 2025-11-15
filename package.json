@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Smart prediction market based on Circle Arc USDC",
   "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
@@ -30,6 +33,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",
     "@chainlink/contracts": "^1.0.0",
+    "@vercel/postgres": "^0.5.1",
     "dotenv": "^16.3.1"
   }
 }

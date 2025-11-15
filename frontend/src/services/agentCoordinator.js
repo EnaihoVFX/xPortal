@@ -7,22 +7,70 @@ import { fetchMarketData } from './dataSources/dataFetcher.js'
 
 /**
  * Coordinates multiple agents to make collaborative trading decisions
+ * Now supports OpenRouter API with configurable models per agent
  */
 export class AgentCoordinator {
-  constructor(geminiApiKey) {
-    this.geminiApiKey = geminiApiKey
+  constructor(openRouterApiKey, agentModels = {}) {
+    const trimmedKey = openRouterApiKey?.trim()
+    if (!trimmedKey || trimmedKey.length === 0) {
+      console.error('AgentCoordinator: Invalid or empty API key provided')
+      throw new Error('OpenRouter API key is required and cannot be empty')
+    }
+    this.openRouterApiKey = trimmedKey
     this.agents = []
     this.coordinationHistory = []
+    this.agentModels = agentModels // { newsAgent: ['model1', 'model2'], dataAgent: ['model3'], ... }
     this.initializeAgents()
   }
 
+  /**
+   * Set model configurations for agents
+   * @param {Object} agentModels - Object mapping agent types to model arrays
+   * Example: { newsAgent: ['openai/gpt-4', 'anthropic/claude-3'], dataAgent: ['google/gemini-pro'] }
+   */
+  setAgentModels(agentModels) {
+    this.agentModels = agentModels
+    this.initializeAgents()
+  }
+
+  /**
+   * Get current model configurations
+   */
+  getAgentModels() {
+    return this.agentModels
+  }
+
   initializeAgents() {
-    // Create specialized agents
+    // Validate API key before creating agents
+    const apiKey = this.openRouterApiKey?.trim()
+    if (!apiKey || apiKey.length === 0) {
+      console.error('AgentCoordinator.initializeAgents: No valid API key available')
+      this.agents = []
+      return
+    }
+
+    // Default models if none specified
+    const defaultModels = {
+      newsAgent: ['openai/gpt-4o-mini'],
+      dataAgent: ['openai/gpt-4o-mini'],
+      sentimentAgent: ['openai/gpt-4o-mini']
+    }
+
+    // Merge with provided configurations
+    const models = {
+      newsAgent: this.agentModels.newsAgent || defaultModels.newsAgent,
+      dataAgent: this.agentModels.dataAgent || defaultModels.dataAgent,
+      sentimentAgent: this.agentModels.sentimentAgent || defaultModels.sentimentAgent
+    }
+
+    // Create specialized agents with their configured models
     this.agents = [
-      new NewsAgent('NewsAgent-1', this.geminiApiKey),
-      new DataAgent('DataAgent-1', this.geminiApiKey),
-      new SentimentAgent('SentimentAgent-1', this.geminiApiKey)
+      new NewsAgent('NewsAgent-1', apiKey, models.newsAgent),
+      new DataAgent('DataAgent-1', apiKey, models.dataAgent),
+      new SentimentAgent('SentimentAgent-1', apiKey, models.sentimentAgent)
     ]
+    
+    console.log('AgentCoordinator: Initialized', this.agents.length, 'agents with API key:', apiKey ? `${apiKey.substring(0, 10)}...` : 'MISSING')
   }
 
   /**

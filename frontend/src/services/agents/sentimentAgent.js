@@ -4,8 +4,8 @@ import { BaseAgent } from './baseAgent.js'
  * Sentiment-focused agent that specializes in analyzing social sentiment and public opinion
  */
 export class SentimentAgent extends BaseAgent {
-  constructor(name, geminiApiKey) {
-    super(name, 'Sentiment & Opinion Analyst', geminiApiKey)
+  constructor(name, openRouterApiKey, models = []) {
+    super(name, 'Sentiment & Opinion Analyst', openRouterApiKey, models)
   }
 
   buildAnalysisPrompt(informationSources, marketContext) {

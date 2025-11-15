@@ -4,8 +4,8 @@ import { BaseAgent } from './baseAgent.js'
  * Data-focused agent that specializes in analyzing quantitative data and trends
  */
 export class DataAgent extends BaseAgent {
-  constructor(name, geminiApiKey) {
-    super(name, 'Data & Trend Analyst', geminiApiKey)
+  constructor(name, openRouterApiKey, models = []) {
+    super(name, 'Data & Trend Analyst', openRouterApiKey, models)
   }
 
   buildAnalysisPrompt(informationSources, marketContext) {

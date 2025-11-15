@@ -48,6 +48,7 @@
 
 .config-section,
 .market-config-section,
+.models-config-section,
 .actions-section,
 .agents-info {
   background: #111111;
@@ -198,6 +199,141 @@ textarea.input-field {
 .agent-role {
   color: #9ca3af;
   font-size: 0.8rem;
+}
+
+.agent-models {
+  margin-top: 0.25rem;
+}
+
+.agent-models small {
+  color: #6b7280;
+  font-size: 0.75rem;
+  word-break: break-word;
+}
+
+.models-config-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.section-description {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.agent-model-config {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.agent-model-config:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.agent-model-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.agent-model-header label {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn-add-model,
+.btn-add-first-model {
+  padding: 0.4rem 0.8rem;
+  background: #1f1f1f;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  color: #10b981;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-add-model:hover,
+.btn-add-first-model:hover {
+  background: #2d2d2d;
+  border-color: #10b981;
+}
+
+.model-selector-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.model-select {
+  flex: 0 0 200px;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.model-select:focus {
+  outline: none;
+  border-color: #10b981;
+}
+
+.model-input {
+  flex: 1;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.model-input:focus {
+  outline: none;
+  border-color: #10b981;
+}
+
+.model-input::placeholder {
+  color: #6b7280;
+}
+
+.btn-remove-model {
+  flex: 0 0 30px;
+  padding: 0.5rem;
+  background: #1f1f1f;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn-remove-model:hover {
+  background: #2d2d2d;
+  border-color: #ef4444;
 }
 
 .agentic-main {
@@ -366,6 +502,53 @@ textarea.input-field {
   margin: 0;
   padding-left: 1.5rem;
   color: #d1d5db;
+}
+
+.models-used-badge {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+}
+
+.models-used-badge small {
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.individual-models-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1f1f1f;
+}
+
+.individual-models-section strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.individual-model-decision {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.model-name {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.model-action {
+  font-weight: 600;
 }
 
 .information-sources {
