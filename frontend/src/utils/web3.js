@@ -32,12 +32,16 @@ export const connectWallet = async () => {
         }
       }
       
-      // Use ethers v6 BrowserProvider or v5 Web3Provider
+      // Use ethers v6 BrowserProvider (v6 doesn't have providers namespace)
       let provider
       if (ethers.BrowserProvider) {
+        // ethers v6
         provider = new ethers.BrowserProvider(window.ethereum)
-      } else {
+      } else if (ethers.providers && ethers.providers.Web3Provider) {
+        // ethers v5 fallback
         provider = new ethers.providers.Web3Provider(window.ethereum)
+      } else {
+        throw new Error('Unsupported ethers version')
       }
       const signer = await provider.getSigner()
       const address = await signer.getAddress()
@@ -55,8 +59,10 @@ export const connectWallet = async () => {
 export const getProvider = () => {
   if (typeof window.ethereum !== 'undefined') {
     if (ethers.BrowserProvider) {
+      // ethers v6
       return new ethers.BrowserProvider(window.ethereum)
-    } else {
+    } else if (ethers.providers && ethers.providers.Web3Provider) {
+      // ethers v5 fallback
       return new ethers.providers.Web3Provider(window.ethereum)
     }
   }
