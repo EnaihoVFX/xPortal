@@ -1,0 +1,12 @@
+{
+  "network": "arcTestnet",
+  "chainId": "5042002",
+  "deployer": "0xd506aF254d24abc55F0A712EBe82e7790e1bd619",
+  "contracts": {
+    "usdc": "0x79d5dD2437c1483b22F98E5769B2Cfdf9eC5166a",
+    "oracle": "0x24A61a5563d5196B8fDa3a8b497A993aFA2BD1A7",
+    "marketplace": "0xf94fEc451cEB81bFe8F4d9A567469F227820EC26"
+  },
+  "isRealUSDC": false,
+  "timestamp": "2025-11-15T13:27:17.767Z"
+}

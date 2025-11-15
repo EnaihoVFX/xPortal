@@ -1,0 +1,36 @@
+{
+  "name": "smart-prediction-market",
+  "version": "1.0.0",
+  "description": "Smart prediction market based on Circle Arc USDC",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network testnet",
+    "deploy:arc": "hardhat run scripts/deploy-arc.js --network arcTestnet",
+    "deploy:arc:real-usdc": "USE_REAL_USDC=true hardhat run scripts/deploy-arc.js --network arcTestnet",
+    "deploy:marketplace": "hardhat run scripts/deploy-marketplace.js --network arcTestnet",
+    "seed:markets": "hardhat run scripts/seed-markets.js --network arcTestnet",
+    "check:wallet": "hardhat run scripts/check-wallet.js --network arcTestnet",
+    "node": "hardhat node",
+    "verify": "hardhat verify"
+  },
+  "keywords": ["prediction-market", "usdc", "defi", "ethereum"],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EnaihoVFX/xPortal.git"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "@chainlink/contracts": "^1.0.0",
+    "dotenv": "^16.3.1"
+  }
+}
+

@@ -1,0 +1,522 @@
+/* Agentic Trading Page Styles */
+.agentic-trading-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.agentic-page-header {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  margin-bottom: 2rem;
+}
+
+.agentic-page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.agentic-page-header .subtitle {
+  font-size: 1rem;
+  color: #888;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .agentic-page-header {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.agentic-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+}
+
+.agentic-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.config-section,
+.market-config-section,
+.actions-section,
+.agents-info {
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.config-section h3,
+.market-config-section h3,
+.agents-info h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #10b981;
+}
+
+.input-field::placeholder {
+  color: #6b7280;
+}
+
+textarea.input-field {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.help-text {
+  display: block;
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.help-text a {
+  color: #10b981;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #059669;
+}
+
+.btn-primary:disabled {
+  background: #374151;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-secondary {
+  background: #1f1f1f;
+  color: #ffffff;
+  border: 1px solid #2d2d2d;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #2d2d2d;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.agent-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.agent-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.agent-role {
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.agentic-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.analysis-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.final-decision-card {
+  background: #111111;
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.final-decision-card h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.decision-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.action-badge-large {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  width: fit-content;
+}
+
+.confidence-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.confidence-meter label {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.meter-bar {
+  width: 100%;
+  height: 24px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 12px;
+}
+
+.consensus-badge {
+  padding: 0.75rem 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  color: #d1d5db;
+}
+
+.reasoning-box {
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+.reasoning-box strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.agent-decisions-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.agent-decision-card {
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.agent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.decision-details {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.action-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.confidence-value {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.stake-badge {
+  padding: 0.25rem 0.75rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 4px;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.decision-reasoning {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.key-points {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #1f1f1f;
+}
+
+.key-points strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.key-points ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #d1d5db;
+}
+
+.information-sources {
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.information-sources h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.source-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.source-section h4 {
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.source-item {
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.source-title {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.source-meta {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.source-content {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.source-content pre {
+  margin: 0;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+.analysis-history {
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-history h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.history-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty-state {
+  color: #6b7280;
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.history-message {
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.history-message.error {
+  border-color: #ef4444;
+}
+
+.message-content {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+.message-content.error {
+  color: #fca5a5;
+}
+
+.message-icon {
+  font-size: 1.2rem;
+}
+
+.agent-action {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.final-action {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.message-timestamp {
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .agentic-content {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+@media (max-width: 968px) {
+  .agentic-content {
+    grid-template-columns: 1fr;
+  }
+
+  .agentic-sidebar {
+    order: 2;
+  }
+
+  .agentic-main {
+    order: 1;
+  }
+}
