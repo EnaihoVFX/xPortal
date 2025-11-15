@@ -67,3 +67,4 @@ export async function fetchRealSentiment(topic, apiKeys = {}) {
   // For now, return mock data
   return fetchSentiment(topic)
 }
+

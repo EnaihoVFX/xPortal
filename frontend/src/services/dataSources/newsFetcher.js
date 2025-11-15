@@ -92,3 +92,4 @@ export async function fetchRealNews(topic, apiKey, limit = 10) {
 
   return []
 }
+

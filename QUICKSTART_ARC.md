@@ -37,3 +37,4 @@ That's it! Your prediction market is now live on Arc Testnet.
 
 For more details, see [ARC_DEPLOYMENT.md](./ARC_DEPLOYMENT.md)
 
+

@@ -58,3 +58,4 @@ interface IPredictionMarket {
     event MarketCancelled(uint256 indexed marketId);
 }
 
+

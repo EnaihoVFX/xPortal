@@ -82,3 +82,4 @@ For database upgrades, add to Vercel:
 ✅ **Upgradeable** - Easy to add database  
 ✅ **Scalable** - Serverless auto-scales  
 
+

@@ -99,3 +99,4 @@ The demo feature creates accounts the same way, but with:
 - **Balance**: 1,000,000 test USDC (from MockUSDC contract)
 - **Access**: Full platform access
 
+
