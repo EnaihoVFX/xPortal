@@ -1,159 +1,196 @@
-# Smart Prediction Market
+# Xportal 🚀
 
-A decentralized prediction market platform built on Ethereum, powered by Circle Arc USDC. This system allows users to create markets, take positions on outcomes, and receive payouts based on market resolution.
+> A USDC-native prediction market on Circle Arc powered by personal AI traders
 
-## Features
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-xportalp.vercel.app-blue?style=for-the-badge)](https://xportalp.vercel.app/)
 
-- **Market Creation**: Create prediction markets with custom questions and multiple outcomes
-- **Dynamic Pricing**: Uses constant product market maker formula for share pricing
-- **Oracle Integration**: Resolve markets through an oracle system
-- **Fee Collection**: 3% fee on total market liquidity
-- **Multiple Outcomes**: Support for 2-10 outcomes per market
-- **Time-based Markets**: Markets with configurable duration and resolution periods
-- **Cancellation & Refunds**: Owner can cancel markets, users can get refunds
-- **Market Factory**: Centralized factory for creating and tracking markets
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 
-## Architecture
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-### Smart Contracts
+[![Circle Arc](https://img.shields.io/badge/Circle%20Arc-Powered-green?style=for-the-badge)](https://www.circle.com/)
 
-1. **PredictionMarket.sol**: Core prediction market contract
-   - Market creation and management
-   - Position taking with dynamic pricing
-   - Market resolution and payouts
-   - Fee collection
+## 🌟 Overview
 
-2. **MarketFactory.sol**: Factory contract for market creation
-   - Centralized market creation
-   - Market tracking and indexing
-   - User market history
+Xportal revolutionizes prediction markets by introducing autonomous AI micro-agents that continuously scan markets, evaluate opportunities, assess risk, and execute trades in USDC outcome shares. Built on Circle Arc, Xportal provides a seamless, intelligent trading experience where you stay in control while your AI analysts handle the heavy lifting.
 
-3. **Oracle.sol**: Oracle contract for market resolution
-   - Authorized resolver system
-   - Market resolution tracking
+### 🎯 Key Features
 
-4. **MockUSDC.sol**: Mock USDC token for testing
-   - 6 decimal precision (matching real USDC)
-   - Faucet function for testnet
+- **🤖 Autonomous AI Traders** - Deploy personal micro-agents that work 24/7 to optimize your trading strategy
+- **💰 USDC-Native** - All trading happens in USDC on Circle Arc for stable, predictable transactions
+- **📊 Real-Time Analytics** - Comprehensive dashboard with portfolio tracking, agent performance metrics, and market insights
+- **🔄 Continuous Liquidity** - AI agents provide 24/7 liquidity, ensuring markets stay active and accessible
+- **🎯 Smart Pricing** - Data-driven agents evaluate opportunities rationally, leading to more accurate market prices
+- **👥 Full Control** - Monitor and manage your agents while they handle trading behind the scenes
 
-## Setup
+## 🏗️ How It Works
+
+Your personal AI traders work autonomously behind the scenes through a sophisticated four-step process:
+
+1. **Scan** - Micro-agents continuously scan markets for opportunities
+2. **Score** - Evaluate and score each opportunity based on comprehensive data analysis
+3. **Evaluate** - Assess risk and changing market conditions in real-time
+4. **Trade** - Execute USDC outcome share trades rationally and autonomously
+
+### Agent Network Architecture
+
+Xportal employs specialized AI agents that continuously scan data sources and market signals:
+
+- **Agent Alpha** - Technical Analysis
+- **Agent Beta** - Sentiment Analysis
+- **Agent Gamma** - Risk Management
+- **Aggregator** - Data Hub for market aggregation
+
+Each agent focuses on different aspects of market analysis including volume, price action, sentiment, market data, news, trends, risk, and liquidity.
+
+## 🚀 Live Demo
+
+**Experience Xportal now:** [https://xportalp.vercel.app/](https://xportalp.vercel.app/)
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework:** [Next.js 15](https://nextjs.org/) with App Router
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **UI Components:** [Shadcn/ui](https://ui.shadcn.com/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons:** [Tabler Icons](https://tabler.io/icons) & [Lucide React](https://lucide.dev/)
+- **Charts:** [Recharts](https://recharts.org/)
+- **Forms:** [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+
+### State Management & Utilities
+- **State:** [Zustand](https://zustand-demo.pmnd.rs/)
+- **URL State:** [Nuqs](https://nuqs.47ng.com/)
+- **Tables:** [TanStack Table](https://tanstack.com/table)
+- **Drag & Drop:** [dnd-kit](https://dndkit.com/)
+
+### Infrastructure
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Blockchain:** [Circle Arc](https://www.circle.com/)
+- **Currency:** USDC (USD Coin)
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── dashboard/          # Dashboard routes
+│   │   ├── agents/         # AI agent management
+│   │   ├── markets/        # Prediction markets
+│   │   ├── overview/       # Dashboard overview
+│   │   └── settings/       # User settings
+│   └── api/                # API routes
+├── components/             # React components
+│   ├── ui/                 # Shadcn UI components
+│   ├── layout/             # Layout components
+│   └── ...
+├── features/               # Feature-based modules
+│   └── xportal/            # Xportal-specific features
+│       └── components/     # Feature components
+├── lib/                    # Utilities and helpers
+├── hooks/                  # Custom React hooks
+└── types/                  # TypeScript type definitions
+```
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18+)
-- npm or yarn
-- Hardhat
+- Node.js 18+ 
+- pnpm (recommended) or npm/yarn
 
 ### Installation
 
-```bash
-npm install
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Xportal-dashboard
+   ```
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+3. **Set up environment variables**
+   ```bash
+   cp env.example.txt .env.local
+   ```
+   Add your environment variables to `.env.local`:
+   - Clerk authentication keys (if using auth)
+   - Circle Arc API keys
+   - Other required configuration
+4. **Run the development server**
+   ```bash
+   pnpm dev
+   ```
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Configuration
-
-1. Copy `.env.example` to `.env`
-2. Fill in your private keys and RPC URLs:
-
-```env
-PRIVATE_KEY=your_private_key_here
-TESTNET_RPC_URL=https://sepolia.infura.io/v3/your_key
-BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
-ETHERSCAN_API_KEY=your_etherscan_key
-```
-
-## Usage
-
-### Compile Contracts
-
-```bash
-npm run compile
-```
-
-### Run Tests
-
-```bash
-npm run test
-```
-
-### Deploy to Testnet
-
-**Sepolia Testnet:**
-```bash
-npm run deploy:testnet
-```
-
-**Circle Arc Testnet (Recommended):**
-```bash
-npm run deploy:arc
-```
-
-For detailed Arc deployment instructions, see [ARC_DEPLOYMENT.md](./ARC_DEPLOYMENT.md)
-
-### Interact with Contracts
+### Build for Production
 
 ```bash
-npx hardhat run scripts/interact.js --network testnet
+pnpm build
+pnpm start
 ```
 
-## Testing Locally
+## 📊 Features
 
-### Start Local Node
+### Dashboard Overview
+- Real-time portfolio value tracking
+- PnL (Profit & Loss) analytics
+- Agent performance metrics
+- Market activity snapshots
+- Quick action shortcuts
 
-```bash
-npm run node
-```
+### Agent Fleet Management
+- Create and deploy new AI trading agents
+- Monitor agent performance and statistics
+- Configure trading strategies and parameters
+- View agent ROI, win rates, and trade history
+- Live agent console for real-time monitoring
 
-In another terminal, deploy to local network:
+### Markets Integration
+- Browse live prediction markets from Polymarket
+- View market details, odds, and liquidity
+- Real-time market data and price movements
+- Agent-automated trading on selected markets
 
-```bash
-npx hardhat run scripts/deploy.js --network hardhat
-```
+### Portfolio Management
+- Track positions across all markets
+- Monitor PnL breakdown by agent and market
+- Analyze trading history and performance
+- USDC balance and allocation tracking
 
-Then interact:
+## 🎨 Design
 
-```bash
-npx hardhat run scripts/interact.js --network hardhat
-```
+Xportal features a modern, clean interface built with:
+- Responsive design for all devices
+- Dark/light theme support
+- Smooth animations and transitions
+- Intuitive navigation and user experience
 
-## Contract Flow
+## 👥 Creators
 
-1. **Market Creation**
-   - User creates market with question, outcomes, and duration
-   - Market is set to Active status
+Built with ❤️ by:
+- **Sami**
+- **Enaiho**
 
-2. **Taking Positions**
-   - Users bet USDC on their preferred outcome
-   - Shares are calculated using constant product formula
-   - Liquidity is added to the market
+## 📝 License
 
-3. **Market Resolution**
-   - After end time, oracle resolves the market
-   - PredictionMarket contract verifies oracle resolution
-   - Fees are calculated and deducted
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-4. **Payout Claims**
-   - Winners can claim their proportional share of the payout pool
-   - Payout = (user shares / total winning shares) * payout pool
+## 🙏 Acknowledgments
 
-## Production Considerations
+- Built on [Circle Arc](https://www.circle.com/) for USDC-native infrastructure
+- Market data integration with [Polymarket](https://polymarket.com/)
+- UI components from [Shadcn/ui](https://ui.shadcn.com/)
+- Built with [Next.js](https://nextjs.org/) and the amazing open-source community
 
-1. **Replace MockUSDC**: Use actual Circle Arc USDC contract address
-2. **Oracle Integration**: Integrate with Chainlink or other oracle services
-3. **Access Control**: Implement more sophisticated resolver authorization
-4. **Gas Optimization**: Further optimize contract for gas efficiency
-5. **Security Audit**: Conduct comprehensive security audit before mainnet
-6. **Frontend**: Build user interface for market interaction
+## 🔗 Links
 
-## Security Features
+- **Live Demo:** [https://xportalp.vercel.app/](https://xportalp.vercel.app/)
+- **Documentation:** Coming soon
+- **GitHub:** [Repository Link]
 
-- ReentrancyGuard protection
-- Access control for critical functions
-- Input validation
-- Safe math operations (Solidity 0.8.20)
-- Oracle verification before resolution
+---
 
-## License
-
-MIT
-
+**Ready to deploy your AI traders?** [Get Started →](https://xportalp.vercel.app/)
