@@ -23,6 +23,14 @@ Xportal revolutionizes prediction markets by introducing autonomous AI micro-age
 - **🎯 Smart Pricing** - Data-driven agents evaluate opportunities rationally, leading to more accurate market prices
 - **👥 Full Control** - Monitor and manage your agents while they handle trading behind the scenes
 
+## 📦 Repository Overview
+
+This repository includes both the dashboard and the on-chain smart contracts used by Xportal:
+
+- `frontend/` — Next.js dashboard (App Router) with agent management, markets, portfolio, analytics
+- `contracts/` (Hardhat project) — Core prediction market contracts and tooling
+- Root configs and documentation (this README, environment examples, deployment helpers)
+
 ## 🏗️ How It Works
 
 Your personal AI traders work autonomously behind the scenes through a sophisticated four-step process:
@@ -69,6 +77,47 @@ Each agent focuses on different aspects of market analysis including volume, pri
 - **Blockchain:** [Circle Arc](https://www.circle.com/)
 - **Currency:** USDC (USD Coin)
 
+## 🧩 Smart Contracts
+
+Core contracts that power the prediction market and agent-driven trading:
+
+1) `PredictionMarket.sol` — Core prediction market logic
+- Create/manage markets
+- Take positions with dynamic pricing
+- Resolve markets and distribute payouts
+- Collect protocol fees
+
+2) `MarketFactory.sol` — Market creation and indexing
+- Centralized creation entrypoint
+- Track markets and user histories
+
+3) `Oracle.sol` — Market resolution oracle
+- Authorized resolvers
+- Resolution tracking and verification
+
+4) `MockUSDC.sol` — USDC test token
+- 6 decimals to mirror USDC
+- Faucet utility for local/test environments
+
+### Pricing and Flow
+- Constant product-style dynamic pricing for outcome shares
+- Multi-outcome markets (2–10 outcomes)
+- Time-bound markets with resolution windows
+- Cancellation and refunds when appropriate
+
+### Security Features
+- Reentrancy protection
+- Access control for privileged actions
+- Strict input validation
+- Oracle verification before resolution
+- Solidity 0.8.x checked arithmetic
+
+### Production Considerations
+- Replace `MockUSDC` with Circle Arc USDC address in production
+- Integrate robust oracle sources (e.g., Chainlink, vetted data providers)
+- Harden access control and upgrade paths
+- Perform comprehensive audits before mainnet
+
 ## 📁 Project Structure
 
 ```
@@ -90,6 +139,20 @@ src/
 ├── lib/                    # Utilities and helpers
 ├── hooks/                  # Custom React hooks
 └── types/                  # TypeScript type definitions
+```
+
+Top-level (contracts):
+
+```
+contracts/                  # Solidity sources
+├── contracts/
+│   ├── PredictionMarket.sol
+│   ├── MarketFactory.sol
+│   ├── Oracle.sol
+│   └── MockUSDC.sol
+├── scripts/                # Deployment & interaction scripts
+├── test/                   # Contract tests
+└── hardhat.config.ts       # Hardhat config
 ```
 
 ## 🚀 Getting Started
@@ -131,6 +194,45 @@ src/
 pnpm build
 pnpm start
 ```
+
+## 🔧 Smart Contracts: Development
+
+From the contracts directory (if using a nested layout, `cd contracts` first):
+
+### Prerequisites
+- Node.js 18+
+- pnpm/npm/yarn
+- Hardhat
+
+### Environment
+Copy and update your env variables:
+```env
+PRIVATE_KEY=your_private_key_here
+TESTNET_RPC_URL=https://sepolia.infura.io/v3/your_key
+BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
+ETHERSCAN_API_KEY=your_etherscan_key
+```
+
+### Common Tasks
+```bash
+# Install deps (at repo root or in contracts/ depending on layout)
+pnpm install
+
+# Compile
+pnpm hardhat compile
+
+# Test
+pnpm hardhat test
+
+# Local node
+pnpm hardhat node
+
+# Deploy (examples)
+pnpm hardhat run scripts/deploy.ts --network sepolia
+pnpm hardhat run scripts/deploy.ts --network hardhat
+```
+
+For Circle Arc deployment, configure your Arc RPC and USDC addresses, then run the appropriate network target.
 
 ## 📊 Features
 
